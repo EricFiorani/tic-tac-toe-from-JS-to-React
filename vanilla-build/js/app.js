@@ -7,8 +7,8 @@ const App = {
         newRoundBtn: document.querySelector('[data-id="new-round-btn"]'),
         squares: document.querySelectorAll('[data-id="square"]'),
         modal: document.querySelector('[data-id="modal"]'),
-        modalText: document.querySelector('[data-id="modal-text]'),
-        modalBtn: document.querySelector('[data-id="modal-btn]'),
+        modalText: document.querySelector('[data-id="modal-text"]'),
+        modalBtn: document.querySelector('[data-id="modal-btn"]'),
     },
 
     state: {
@@ -108,13 +108,16 @@ const App = {
 
                     App.$.modal.classList.remove('hidden');
 
-                    let message = ''
+                    let message = "";
                     if (game.winner) {
-                        message = `Player ${game.winner} wins!`
+                        message = `Player ${game.winner} wins!`;
                     } else {
-                        message = 'Tie Game!'
+                        message = 'Tie Game!';
                     }
-               }
+
+                    App.$.modalText.textContent = message;
+                    
+               };
 
 
             });
