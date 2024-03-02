@@ -8,6 +8,10 @@ const App = {
         squares: document.querySelectorAll('[data-id="square"]')
     },
 
+    state: {
+        currentPlayer: 1
+    },
+
     init() {
         App.registerEventListeners();
     },
@@ -28,6 +32,26 @@ const App = {
         App.$.squares.forEach(square => {
             square.addEventListener('click', event => {
                 console.log(`Square with id ${event.target.id} was clicked`);
+                console.log(`Current player is ${App.state.currentPlayer}`);
+
+
+                if (square.hasChildNodes()) {
+                    return;
+                }
+
+
+                const currentPlayer = App.state.currentPlayer;
+                const icon = document.createElement('i')
+
+                if (currentPlayer === 1) {
+                    icon.classList.add('fa-solid', 'fa-x', 'yellow')
+                } else {
+                    icon.classList.add('fa-solid', 'fa-o', 'turquoise')
+                };
+                
+                App.state.currentPlayer = App.state.currentPlayer === 1 ? 2 : 1
+
+                square.replaceChildren(icon);
             });
         });
     },
